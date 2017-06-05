@@ -1,0 +1,26 @@
+{
+  "name": "hametuha/hametupack",
+  "description": "A WordPress plugin to enhance Jetpack.",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "fumikito",
+      "email": "guy@hametuha.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.8",
+    "squizlabs/php_codesniffer": "~2.8",
+    "wp-coding-standards/wpcs": "~0.11"
+  },
+  "autoload": {
+    "psr-0": {
+      "Hametuha\\HametuPack": "app"
+    }
+  }
+}
