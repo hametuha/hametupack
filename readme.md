@@ -17,7 +17,12 @@ This plugin add small functionality to Jetpack.
 but some functions are not well localized.
 HametuPack localize below:
 
-* __ShareDaddy__ Add [LINE](https://line.me) and [Hatena Bookmark](https://b.hatena.ne.jp).
+### Add extra share buttons
+
+HametuPack adds buttons to __Sharing Setting__.
+
+* Send to [LINE](https://line.me) button.
+* Add entry to [Hatena Bookmark](https://b.hatena.ne.jp) button.
 
 ## Installation
 
