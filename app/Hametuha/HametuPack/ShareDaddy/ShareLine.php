@@ -45,7 +45,7 @@ class ShareLine extends \Sharing_Source {
 	 * @return string
 	 */
 	public function get_display( $post ) {
-		$url =  get_permalink( $post );
+		$url = get_permalink( $post );
 		$title = __( 'Send this entry via LINE', 'hametupack' );
 		if ( $this->smart ) {
 			ob_start();

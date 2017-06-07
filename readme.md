@@ -24,6 +24,10 @@ HametuPack adds buttons to __Sharing Setting__.
 * Send to [LINE](https://line.me) button.
 * Add entry to [Hatena Bookmark](https://b.hatena.ne.jp) button.
 
+### Further Request
+
+If you need more buttons, please read [our wiki](https://github.com/hametuha/hametupack/wiki) and send PR!
+
 ## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/hametupack` directory, or install the plugin through the WordPress plugins screen directly.
@@ -46,5 +50,3 @@ Please make issue at [github](https://github.com/hametuha/hametupack/issues).
 ### 1.0.0
 
 * Initial release. 
-
-

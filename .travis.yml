@@ -1,0 +1,34 @@
+language: php
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+branches:
+  only:
+  - master
+  - "/^v?[0-9\\.]+$/"
+php:
+- 5.6
+- 7.0
+env:
+  matrix:
+  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=4.7 WP_MULTISITE=0
+  global:
+  - SVN_REPO: https://plugins.svn.wordpress.org/hametupack/
+  - secure: "jolg5DZ6606PA1aBoSexi6EApsVOGyAapljIK9NEcBTjIqWCKT9PsXv/UU3orzOcMWCvGR32wOn+p7xK5N0agolycUmMnmVw4hCepLELPKi687MlfZjtUZAqab/3kF0lxDQp9McMyaxCYZq7qlGM0q9vJE45IC5gAwpPCYwgv9/qvp3W6wKS84P+SVf73kY5vBgMpdZ1thB3ouU9NzbVnJLeRd4poXL6BCZMFv1/1vG3eX8ASOIOh6Ed1Bd6Cnp/dVb1yIitHbn3NYlTrgj871dgxUCwyYpauoZPgLT5dX9MwD57mTfLlQWvVvfp4YJ9oxaNBga0mmcWeENgWMWtYm0XzyvK18me3AZ1R/rxss7cJaERKn5frfFqafU9WxIuksiPHqao5LSboCqhQJt6Axz3o0ys8wfxpjV+3ZoecshgLQEE2WfAWtd/VJhKHUO2L+VoaUrr+Xx0+5gDqZoWcRMqHCHUGtUv1o1A3Oyac4uLdaw5UAqPcNCrKDLEPUMJuVr10gn8jQapZg4TPpPZDu4yJsyOnBFPOWN/lidCKiXLQk427dMhMZF2Zs0dQPOxxaoHUb0fTizCzasgtTh75q0tspCTL9yjk8MJTplzoQ6/s4PLuQ2lftawINKiIOMOB8aY9Dxi80QdhO/f45Xrp/eo3nSfZ1zxEHTwZG8VmvA="
+matrix:
+  include:
+  - php: 5.6
+    env: WP_VERSION=4.7 WP_MULTISITE=0 WP_PULUGIN_DEPLOY=1
+before_script:
+- composer install
+- curl -s -o $HOME/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh
+- source $HOME/.nvm/nvm.sh
+- nvm install v6.9.1
+- node --version
+- npm install && npm run package
+- bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+script:
+- vendor/bin/phpunit
+after_success: curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash

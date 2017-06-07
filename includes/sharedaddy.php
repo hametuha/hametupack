@@ -20,7 +20,7 @@ add_filter( 'sharing_services', function ( $services ) {
 /**
  * Register styles
  */
-add_action( 'init', function(){
+add_action( 'init', function() {
 	$asset_url = plugin_dir_url( __DIR__ ) . 'assets';
 	wp_register_style( 'hametupack-share-daddy', "{$asset_url}/css/share-daddy-support.css", [], hametupack_version() );
 } );
