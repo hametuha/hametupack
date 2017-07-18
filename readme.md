@@ -4,7 +4,7 @@
 Contributors: Takahashi_Fumiki  
 Tags: jetpack,japan,line,hatena  
 Requires at least: 4.7.0  
-Tested up to: 4.7.5  
+Tested up to: 4.8.0
 Stable tag: 1.0.0  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
@@ -46,6 +46,10 @@ Please make issue at [github](https://github.com/hametuha/hametupack/issues).
 2. Official buttons also supported.
 
 ## Changelog
+
+### 1.1.0
+
+* Now you can replace Facebook App ID from WordPress.com's to yours.
 
 ### 1.0.0
 
