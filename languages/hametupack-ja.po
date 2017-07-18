@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HametuPack\n"
-"POT-Creation-Date: 2017-06-06 00:58+0900\n"
-"PO-Revision-Date: 2017-06-06 00:58+0900\n"
+"POT-Creation-Date: 2017-07-18 20:56+0900\n"
+"PO-Revision-Date: 2017-07-18 20:57+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: hametupack.php\n"
@@ -73,6 +73,17 @@ msgid ""
 msgstr ""
 "Hametupack は <a href=\"%s\" target=\"_blank\">Jetpack</a> と一緒に動きます"
 "が、有効化されていません。"
+
+#: includes/sharedaddy.php:41
+msgid "Facebook App ID"
+msgstr "Facebook アプリ ID"
+
+#: includes/sharedaddy.php:48
+msgid ""
+"Default facebook app ID(of WordPress.com) will be replaced by this app ID."
+msgstr ""
+"デフォルトの Facebook アプリ ID（WordPress.comのもの）をこのアプリIDに変え"
+"られます。"
 
 #. Plugin Name of the plugin/theme
 msgid "HametuPack"
