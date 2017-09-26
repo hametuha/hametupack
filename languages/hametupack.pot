@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: HametuPack\n"
-"POT-Creation-Date: 2017-07-18 20:55+0900\n"
+"POT-Creation-Date: 2017-09-26 17:53+0900\n"
 "PO-Revision-Date: 2017-06-06 00:15+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
@@ -72,6 +72,24 @@ msgid ""
 "activated."
 msgstr ""
 
+#: includes/ogp.php:14
+msgid "Twitter Player Card"
+msgstr ""
+
+#: includes/ogp.php:17
+msgid "Use player card if possible."
+msgstr ""
+
+#: includes/ogp.php:18
+msgid "No player card."
+msgstr ""
+
+#: includes/ogp.php:32
+msgid ""
+"For more detail for twitter cards, see <a href=\"https://dev.twitter.com/"
+"cards/types/player\" target=\"_blank\">document</a>."
+msgstr ""
+
 #: includes/sharedaddy.php:41
 msgid "Facebook App ID"
 msgstr ""
@@ -79,6 +97,11 @@ msgstr ""
 #: includes/sharedaddy.php:48
 msgid ""
 "Default facebook app ID(of WordPress.com) will be replaced by this app ID."
+msgstr ""
+
+#: template-parts/player-card-audio.php:52
+#: template-parts/player-card-video.php:39
+msgid "Your browser does not support the audio tag."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

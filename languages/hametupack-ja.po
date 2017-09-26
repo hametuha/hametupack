@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HametuPack\n"
-"POT-Creation-Date: 2017-07-18 20:56+0900\n"
-"PO-Revision-Date: 2017-07-18 20:57+0900\n"
+"POT-Creation-Date: 2017-09-26 17:53+0900\n"
+"PO-Revision-Date: 2017-09-26 17:55+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -74,6 +74,26 @@ msgstr ""
 "Hametupack は <a href=\"%s\" target=\"_blank\">Jetpack</a> と一緒に動きます"
 "が、有効化されていません。"
 
+#: includes/ogp.php:14
+msgid "Twitter Player Card"
+msgstr "Twitter Player Card"
+
+#: includes/ogp.php:17
+msgid "Use player card if possible."
+msgstr "可能ならば Player Card を使う"
+
+#: includes/ogp.php:18
+msgid "No player card."
+msgstr "Player Card なし"
+
+#: includes/ogp.php:32
+msgid ""
+"For more detail for twitter cards, see <a href=\"https://dev.twitter.com/"
+"cards/types/player\" target=\"_blank\">document</a>."
+msgstr ""
+"twitter cardsについてより詳しくは<a href=\"https://dev.twitter.com/cards/"
+"types/player\" target=\"_blank\">ドキュメント</a>をご覧ください。"
+
 #: includes/sharedaddy.php:41
 msgid "Facebook App ID"
 msgstr "Facebook アプリ ID"
@@ -84,6 +104,11 @@ msgid ""
 msgstr ""
 "デフォルトの Facebook アプリ ID（WordPress.comのもの）をこのアプリIDに変え"
 "られます。"
+
+#: template-parts/player-card-audio.php:52
+#: template-parts/player-card-video.php:39
+msgid "Your browser does not support the audio tag."
+msgstr "あなたのブラウザはaudioタグをサポートしていません。"
 
 #. Plugin Name of the plugin/theme
 msgid "HametuPack"
@@ -103,7 +128,7 @@ msgstr "破滅派"
 
 #. Author URI of the plugin/theme
 msgid "https://hametuha.co.jp"
-msgstr ""
+msgstr "https://hametuha.co.jp"
 
 #~ msgid "Takahashi Fumiki"
 #~ msgstr "高橋文樹"

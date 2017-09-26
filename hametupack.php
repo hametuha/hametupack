@@ -12,6 +12,7 @@ Author URI: https://hametuha.co.jp
 
 defined( 'ABSPATH' ) or die();
 
+
 /**
  * Bootstrap this plugin
  *
