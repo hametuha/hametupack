@@ -4,7 +4,7 @@ Plugin Name: HametuPack
 Plugin URI: http://wordpress.org/extend/plugins/hametupack/
 Description: This plugin add small functionality to Jetpack.
 Author: Hametuha
-Version: 1.1.0
+Version: 1.2.0
 Text Domain: hametupack
 Domain Path: /languages/
 Author URI: https://hametuha.co.jp
@@ -75,3 +75,12 @@ function hametupack_version() {
 	}
 	return $data['version'];
 }
+
+/**
+ * Flush rules for plugin activation.
+ */
+function hametupack_flush_rules() {
+	flush_rewrite_rules();
+}
+
+register_activation_hook( __FILE__, 'hametupack_flush_rules' );
