@@ -14,12 +14,15 @@
  * @return string
  */
 add_filter( 'jetpack_sharing_display_markup', function( $markup, $sharing_enabled ) {
-	if ( empty( $sharing_enabled ) ) {
+	if ( empty( $sharing_enabled ) || ! is_amp_endpoint() ) {
 		return $markup;
 	}
 	$markup = preg_replace_callback( '#<\!-- not supported: ([^ ]+) -->#', function( $matches ) {
 		return apply_filters( 'hametupack_amp_share_button', $matches[0], $matches[1] );
 	}, $markup );
+	// Remove li tag.
+	$markup = preg_replace( '#<li.+</li>#us', '', $markup );
+	$markup = str_replace( '</div></li></ul></div></div>', '', $markup );
 	return $markup;
 }, 11, 2 );
 
