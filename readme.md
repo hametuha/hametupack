@@ -4,8 +4,8 @@
 Contributors: Takahashi_Fumiki, hametuha  
 Tags: jetpack,japan,line,hatena  
 Requires at least: 4.7.0  
-Tested up to: 4.8.2  
-Stable tag: 1.2.0  
+Tested up to: 4.9.6  
+Stable tag: 1.2.1  
 Requires PHP: 5.5  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
@@ -54,6 +54,10 @@ Please make issue at [github](https://github.com/hametuha/hametupack/issues).
 2. Official buttons also supported.
 
 ## Changelog
+
+### 1.2.1
+
+* Fix share button when [AMP](https://ja.wordpress.org/plugins/amp/) enabled.
 
 ### 1.2.0
 
