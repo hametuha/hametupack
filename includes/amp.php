@@ -15,7 +15,6 @@
  */
 add_filter( 'jetpack_sharing_display_markup', function( $markup, $sharing_enabled = [] ) {
 	if ( empty( $sharing_enabled ) || ! function_exists( 'is_amp_endpoint' ) || ! is_amp_endpoint() ) {
-		var_dump( $sharing_enabled );
 		return $markup;
 	}
 	$markup = preg_replace_callback( '#<\!-- not supported: ([^ ]+) -->#', function( $matches ) {
