@@ -13,11 +13,21 @@
  * @param array  $sharing_enabled
  * @return string
  */
-add_filter( 'jetpack_sharing_display_markup', function( $markup, $sharing_enabled ) {
-	if ( empty( $sharing_enabled ) || ! is_amp_endpoint() ) {
+add_filter( 'jetpack_sharing_display_markup', function( $markup, $sharing_enabled = [] ) {
+	if ( empty( $sharing_enabled ) || ! function_exists( 'is_amp_endpoint' ) || ! is_amp_endpoint() ) {
+		var_dump( $sharing_enabled );
 		return $markup;
 	}
 	$markup = preg_replace_callback( '#<\!-- not supported: ([^ ]+) -->#', function( $matches ) {
+		/**
+		 * hametupack_amp_share_button
+		 *
+		 * Filter for not supported jetpack share button on AMP.
+		 *
+		 * @param string $markup  Default markup comment.
+		 * @param string $service Service name.
+		 * @return string
+		 */
 		return apply_filters( 'hametupack_amp_share_button', $matches[0], $matches[1] );
 	}, $markup );
 	// Remove li tag.

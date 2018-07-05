@@ -5,7 +5,7 @@ Contributors: Takahashi_Fumiki, hametuha
 Tags: jetpack,japan,line,hatena  
 Requires at least: 4.7.0  
 Tested up to: 4.9.6  
-Stable tag: 1.2.2  
+Stable tag: 1.2.3  
 Requires PHP: 5.5  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
@@ -54,6 +54,11 @@ Please make issue at [github](https://github.com/hametuha/hametupack/issues).
 2. Official buttons also supported.
 
 ## Changelog
+
+### 1.2.3
+
+* Fix bug on non AMP site. Sorry for that.
+* Works with [JP Sharing](https://wordpress.org/plugins/jetpack-sharing/#developers). But hametupack do nothing because it doesn't support AMP plugin.
 
 ### 1.2.1, 1.2.2
 
