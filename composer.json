@@ -16,7 +16,7 @@
 	},
 	"minimum-stability": "stable",
 	"require": {
-		"php": ">=5.4.0"
+		"php": ">=7.4"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0",
@@ -32,6 +32,9 @@
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"platform": {
+			"php": "7.4"
 		}
 	}
 }
