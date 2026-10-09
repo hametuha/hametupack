@@ -8,7 +8,7 @@ namespace Hametuha\HametuPack\ShareDaddy;
  * @package Hametuha\HametuPack\ShareDaddy
  */
 abstract class AbstractShare extends \Sharing_Source {
-	
+
 	/**
 	 * Constructor
 	 *
@@ -17,9 +17,9 @@ abstract class AbstractShare extends \Sharing_Source {
 	 */
 	public function __construct( $id, array $settings ) {
 		parent::__construct( $id, $settings );
-		add_filter( 'hametupack_amp_share_button', [ $this, 'filter_amp_button' ], 10, 2 );
+		add_filter( 'hametupack_amp_share_button', array( $this, 'filter_amp_button' ), 10, 2 );
 	}
-	
+
 	/**
 	 * Filter markup
 	 *
@@ -39,13 +39,13 @@ abstract class AbstractShare extends \Sharing_Source {
 <amp-social-share type="{$this->id}" width="60" height="44"{$atts}></amp-social-share>
 HTML;
 	}
-	
+
 	/**
 	 * Override URL.
 	 *
 	 * @return array
 	 */
 	protected function amp_share_attributes() {
-		return [];
+		return array();
 	}
 }

@@ -16,16 +16,22 @@ require_once $_tests_dir . '/includes/functions.php';
 /**
  * Manually load the plugin being tested.
  */
-tests_add_filter( 'muplugins_loaded', function() {
-	// Activate jetpack
-	define( 'JETPACK_DEV_DEBUG', true );
-	update_option( 'active_plugins', [
-		'jetpack/jetpack.php'
-	] );
-	update_option( 'jetpack_activated', 1 );
-	update_option( 'jetpack_active_modules', ['sharedaddy'] );
-	require dirname( dirname( __FILE__ ) ) . '/hametupack.php';
-} );
+tests_add_filter(
+	'muplugins_loaded',
+	function () {
+		// Activate jetpack
+		define( 'JETPACK_DEV_DEBUG', true );
+		update_option(
+			'active_plugins',
+			array(
+				'jetpack/jetpack.php',
+			)
+		);
+		update_option( 'jetpack_activated', 1 );
+		update_option( 'jetpack_active_modules', array( 'sharedaddy' ) );
+		require dirname( __DIR__, 1 ) . '/hametupack.php';
+	}
+);
 
 // Start up the WP testing environment.
 require $_tests_dir . '/includes/bootstrap.php';
