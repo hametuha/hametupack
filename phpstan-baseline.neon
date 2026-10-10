@@ -1,0 +1,19 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to function is_null\(\) with null will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Hametuha/HametuPack/OGP/TwitterCard.php
+
+		-
+			message: '#^Static property Hametuha\\HametuPack\\OGP\\TwitterCard\:\:\$self \(null\) does not accept Hametuha\\HametuPack\\OGP\\TwitterCard\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Hametuha/HametuPack/OGP/TwitterCard.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 4
+			path: app/Hametuha/HametuPack/OGP/TwitterCard.php

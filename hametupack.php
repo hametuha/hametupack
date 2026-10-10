@@ -5,6 +5,7 @@ Plugin URI: http://wordpress.org/extend/plugins/hametupack/
 Description: This plugin add small functionality to Jetpack.
 Author: Hametuha
 Version: 1.2.3
+Requires PHP: 7.4
 Text Domain: hametupack
 Domain Path: /languages/
 Author URI: https://hametuha.co.jp
@@ -20,7 +21,7 @@ defined( 'ABSPATH' ) or die();
  * @internal
  */
 function hametupack_plugins_loaded() {
-	load_plugin_textdomain( 'hametupack', false, basename( dirname( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'hametupack', false, basename( __DIR__ ) . '/languages' );
 	if ( version_compare( phpversion(), '5.5.0', '<' ) ) {
 		add_action( 'admin_notices', 'hametupack_invalid_php' );
 	} elseif ( ! defined( 'JETPACK__VERSION' ) ) {
@@ -45,7 +46,7 @@ add_action( 'plugins_loaded', 'hametupack_plugins_loaded' );
  */
 function hametupack_invalid_php() {
 	// translators: %s PHP version.
-	$message =sprintf( __( 'Hametupack requires PHP5.5 and over, but yours %s.', 'hametupack' ), phpversion() );
+	$message = sprintf( __( 'Hametupack requires PHP5.5 and over, but yours %s.', 'hametupack' ), phpversion() );
 	printf( '<div class="error"><p>%s</p></div>', esc_html( $message ) );
 }
 
@@ -57,7 +58,7 @@ function hametupack_invalid_php() {
  */
 function hametupack_no_jetpack() {
 	// translators: %s Jetpack URL.
-	$message =sprintf( __( 'Hametupack works with <a href="%s" target="_blank">Jetpack</a> but not activated.', 'hametupack' ), 'https://jetpack.me' );
+	$message = sprintf( __( 'Hametupack works with <a href="%s" target="_blank">Jetpack</a> but not activated.', 'hametupack' ), 'https://jetpack.me' );
 	printf( '<div class="error"><p>%s</p></div>', wp_kses_post( $message ) );
 }
 
@@ -70,9 +71,12 @@ function hametupack_no_jetpack() {
 function hametupack_version() {
 	static $data = null;
 	if ( is_null( $data ) ) {
-		$data = get_file_data( __FILE__, array(
-			'version' => 'Version',
-		) );
+		$data = get_file_data(
+			__FILE__,
+			array(
+				'version' => 'Version',
+			)
+		);
 	}
 	return $data['version'];
 }

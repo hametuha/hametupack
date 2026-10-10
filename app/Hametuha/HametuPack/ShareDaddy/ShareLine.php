@@ -23,7 +23,7 @@ class ShareLine extends AbstractShare {
 	public function __construct( $id, array $settings ) {
 		parent::__construct( $id, $settings );
 
-		if ( 'official' == $this->button_style ) {
+		if ( 'official' === $this->button_style ) {
 			$this->smart = true;
 		} else {
 			$this->smart = false;
@@ -45,12 +45,12 @@ class ShareLine extends AbstractShare {
 	 * @return string
 	 */
 	public function get_display( $post ) {
-		$url = get_permalink( $post );
+		$url   = get_permalink( $post );
 		$title = __( 'Send this entry via LINE', 'hametupack' );
 		if ( $this->smart ) {
 			ob_start();
 			?>
-			<div class="line-it-button" data-lang="ja" data-type="share-a" data-url="<?= esc_attr( $url ) ?>" style="display: none;"></div>
+			<div class="line-it-button" data-lang="ja" data-type="share-a" data-url="<?= esc_attr( $url ); ?>" style="display: none;"></div>
 			<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 			<?php
 			$link = ob_get_contents();
@@ -58,7 +58,7 @@ class ShareLine extends AbstractShare {
 			return $link;
 		} else {
 			$line_url = sprintf( 'https://line.me/R/msg/text/?%s', rawurlencode( $url ) );
-			if ( 'icon-text' == $this->button_style ) {
+			if ( 'icon-text' === $this->button_style ) {
 				$label = _x( 'Send', 'share_to', 'hametupack' );
 			} else {
 				$label = _x( 'Send to LINE', 'share_to', 'hametupack' );

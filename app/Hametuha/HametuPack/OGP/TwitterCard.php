@@ -15,45 +15,64 @@ class TwitterCard {
 	 */
 	private function __construct() {
 		// Determine card type.
-		add_action( 'template_redirect', function () {
-			if ( ! ( is_page() || is_single() || is_singular() ) ) {
-				return;
-			}
-			$post = get_queried_object();
-			if ( ! $this->requires_player( $post ) ) {
-				return;
-			}
-			// This is singleton.
-			add_filter( 'jetpack_open_graph_tags', [ $this, 'add_tags' ], 11 );
-			// For Yoast.
-			add_filter( 'wpseo_twitter_card_type', function( $type ) {
-				return 'player';
-			} );
-			add_action( 'wpseo_twitter',  [ $this, 'yoast_output' ], 11 );
-		}, 1000 );
+		add_action(
+			'template_redirect',
+			function () {
+				if ( ! ( is_page() || is_single() || is_singular() ) ) {
+					return;
+				}
+				$post = get_queried_object();
+				if ( ! $this->requires_player( $post ) ) {
+					return;
+				}
+				// This is singleton.
+				add_filter( 'jetpack_open_graph_tags', array( $this, 'add_tags' ), 11 );
+				// For Yoast.
+				add_filter(
+					'wpseo_twitter_card_type',
+					function ( $type ) {
+						return 'player';
+					}
+				);
+				add_action( 'wpseo_twitter', array( $this, 'yoast_output' ), 11 );
+			},
+			1000
+		);
 		// Add query vars.
-		add_filter( 'query_vars', function( $vars ) {
-			$vars[] = 'hametupack-template';
-			return $vars;
-		} );
+		add_filter(
+			'query_vars',
+			function ( $vars ) {
+				$vars[] = 'hametupack-template';
+				return $vars;
+			}
+		);
 
 		// Add rewrite rules.
-		add_filter( 'rewrite_rules_array', function ( $rules ) {
-			$rules = array_merge( [
-				'^hametupack/twitter-card/player/(\d+)/?$' => 'index.php?p=$matches[1]&hametupack-template=twitter-card',
-			], $rules );
-			return $rules;
-		} );
+		add_filter(
+			'rewrite_rules_array',
+			function ( $rules ) {
+				$rules = array_merge(
+					array(
+						'^hametupack/twitter-card/player/(\d+)/?$' => 'index.php?p=$matches[1]&hametupack-template=twitter-card',
+					),
+					$rules
+				);
+				return $rules;
+			}
+		);
 		// Add customize query
-		add_action( 'pre_get_posts', function( \WP_Query &$wp_query ) {
-			if ( $wp_query->is_main_query() && 'twitter-card' == $wp_query->get( 'hametupack-template' ) ) {
-				if ( ! $this->requires_player( $wp_query->get( 'p' ) ) ) {
-					$wp_query->set_404();
+		add_action(
+			'pre_get_posts',
+			function ( \WP_Query &$wp_query ) {
+				if ( $wp_query->is_main_query() && 'twitter-card' === $wp_query->get( 'hametupack-template' ) ) {
+					if ( ! $this->requires_player( $wp_query->get( 'p' ) ) ) {
+						$wp_query->set_404();
+					}
 				}
 			}
-		} );
+		);
 		// Load template.
-		add_filter( 'template_include', [ $this, 'load_template' ] );
+		add_filter( 'template_include', array( $this, 'load_template' ) );
 	}
 
 	/**
@@ -72,7 +91,8 @@ class TwitterCard {
 				break;
 			default:
 				// If this is SSS, return episode type.
-				return get_post_meta( $post->ID, 'episode_type', true ) ?: false;
+				$episode_type = get_post_meta( $post->ID, 'episode_type', true );
+				return $episode_type ? $episode_type : false;
 				break;
 		}
 	}
@@ -89,16 +109,18 @@ class TwitterCard {
 		switch ( get_post_format( $post ) ) {
 			case 'audio':
 			case 'video':
-				$url = false;
-				$query = new \WP_Query( [
-					'post_type' => 'attachment',
-					'post_parent' => $post->ID,
-					'posts_per_page' => 1,
-					'post_mime_type' => get_post_format( $post ),
-					'orderby' => [
-						'menu_order' => 'desc',
-					],
-				] );
+				$url   = false;
+				$query = new \WP_Query(
+					array(
+						'post_type'      => 'attachment',
+						'post_parent'    => $post->ID,
+						'posts_per_page' => 1,
+						'post_mime_type' => get_post_format( $post ),
+						'orderby'        => array(
+							'menu_order' => 'desc',
+						),
+					)
+				);
 				while ( $query->have_posts() ) {
 					$query->the_post();
 					$url = get_the_guid();
@@ -108,7 +130,8 @@ class TwitterCard {
 				break;
 			default:
 				// If this is SSS, return episode type.
-				return get_post_meta( $post->ID, 'audio_file', true ) ?: false;
+				$audio_file = get_post_meta( $post->ID, 'audio_file', true );
+				return $audio_file ? $audio_file : false;
 				break;
 		}
 	}
@@ -128,7 +151,7 @@ class TwitterCard {
 			  AND guid = %s
 			LIMIT 1
 SQL;
-		return (string) $wpdb->get_var( $wpdb->prepare( $query, $url ) );
+		return (string) $wpdb->get_var( $wpdb->prepare( $query, $url ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $query is a static SQL with placeholders.
 	}
 
 	/**
@@ -143,9 +166,12 @@ SQL;
 		if ( get_option( 'rewrite_rules' ) ) {
 			return home_url( "/hametupack/twitter-card/player/{$post->ID}" );
 		} else {
-			return add_query_arg( [
-				'hametupack_twitter_card' => $post->ID,
-			], home_url() );
+			return add_query_arg(
+				array(
+					'hametupack_twitter_card' => $post->ID,
+				),
+				home_url()
+			);
 		}
 	}
 
@@ -158,7 +184,7 @@ SQL;
 	 */
 	public function requires_player( $post = null ) {
 		// Is this post format?
-		if ( false === array_search( $this->get_media_type( $post ), [ 'audio', 'video' ] ) ) {
+		if ( false === array_search( $this->get_media_type( $post ), array( 'audio', 'video' ), true ) ) {
 			return false;
 		}
 		// Does this have actual file?
@@ -173,23 +199,23 @@ SQL;
 		 * @param \WP_Post $post WP_Post object
 		 * @param string   $type audio or video
 		 */
-		return apply_filters( 'hametupack_media_dimension', [ 480, 'audio' == $type ? 200 : 320  ], $post, $type );
+		return apply_filters( 'hametupack_media_dimension', array( 480, 'audio' === $type ? 200 : 320 ), $post, $type );
 	}
 
 	/**
 	 * Overrides Yoast's OGP who overrides jetpack.
 	 */
 	public function yoast_output() {
-		$post = get_queried_object();
-		$url  = $this->get_media_url( $post );
-		$type = $this->get_media_type( $post );
+		$post                   = get_queried_object();
+		$url                    = $this->get_media_url( $post );
+		$type                   = $this->get_media_type( $post );
 		list( $width, $height ) = $this->get_player_dimension( $post, $type );
 		?>
-		<meta name="twitter:player" content="<?= $this->get_card_url( $post ) ?>" />
-		<meta name="twitter:player:width" content="<?= esc_attr( $width ) ?>" />
-		<meta name="twitter:player:height" content="<?= esc_attr( $height ) ?>" />
-		<meta name="twitter:player:stream" content="<?= esc_url( $url ) ?>" />
-		<meta name="twitter:player:stream:content_type" content="<?= esc_attr( $this->get_mimetype_from_url( $url ) ) ?>" />
+		<meta name="twitter:player" content="<?= $this->get_card_url( $post ); ?>" />
+		<meta name="twitter:player:width" content="<?= esc_attr( $width ); ?>" />
+		<meta name="twitter:player:height" content="<?= esc_attr( $height ); ?>" />
+		<meta name="twitter:player:stream" content="<?= esc_url( $url ); ?>" />
+		<meta name="twitter:player:stream:content_type" content="<?= esc_attr( $this->get_mimetype_from_url( $url ) ); ?>" />
 		<?php
 	}
 
@@ -202,12 +228,12 @@ SQL;
 	public function add_tags( $og_tags ) {
 		$post = get_queried_object();
 		// Let's add tags for this!
-		$url  = $this->get_media_url( $post );
-		$type = $this->get_media_type( $post );
-		list( $width, $height ) = $this->get_player_dimension( $post, $type );
-		$og_tags['twitter:card'] = 'player';
-		$og_tags['twitter:player'] = $this->get_card_url( $post );
-		$og_tags['twitter:player:width'] = $width;
+		$url                              = $this->get_media_url( $post );
+		$type                             = $this->get_media_type( $post );
+		list( $width, $height )           = $this->get_player_dimension( $post, $type );
+		$og_tags['twitter:card']          = 'player';
+		$og_tags['twitter:player']        = $this->get_card_url( $post );
+		$og_tags['twitter:player:width']  = $width;
 		$og_tags['twitter:player:height'] = $height;
 		$og_tags['twitter:player:stream'] = $url;
 		$og_tags['twitter:player:stream:content_type'] = $this->get_mimetype_from_url( $url );
@@ -222,16 +248,16 @@ SQL;
 	 * @return string
 	 */
 	public function load_template( $template ) {
-		if ( ! is_404() && 'twitter-card' == get_query_var( 'hametupack-template' ) ) {
-			$post = get_queried_object();
-			$type = $this->get_media_type( $post );
+		if ( ! is_404() && 'twitter-card' === get_query_var( 'hametupack-template' ) ) {
+			$post      = get_queried_object();
+			$type      = $this->get_media_type( $post );
 			$file_name = "player-card-{$type}.php";
-			$file = '';
-			foreach ( [
-				dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) . '/template-parts',
+			$file      = '';
+			foreach ( array(
+				dirname( __DIR__, 4 ) . '/template-parts',
 				get_template_directory() . '/template-parts/hametupack',
 				get_stylesheet_directory() . '/template-parts/hametupack',
-			] as $base ) {
+			) as $base ) {
 				$path = trailingslashit( $base ) . $file_name;
 				if ( file_exists( $path ) ) {
 					$file = $path;

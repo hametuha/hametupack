@@ -23,7 +23,7 @@ class ShareHatebu extends AbstractShare {
 	public function __construct( $id, array $settings ) {
 		parent::__construct( $id, $settings );
 
-		if ( 'official' == $this->button_style ) {
+		if ( 'official' === $this->button_style ) {
 			$this->smart = true;
 		} else {
 			$this->smart = false;
@@ -46,18 +46,25 @@ class ShareHatebu extends AbstractShare {
 	 * @return string
 	 */
 	public function get_display( $post ) {
-		$url = sprintf( 'http://b.hatena.ne.jp/entry/%s', preg_replace_callback( '#^(https?)://#u', function ( $match ) {
-			return 'https' == $match[1] ? 's/' : '';
-		}, get_permalink( $post ) ) );
+		$url   = sprintf(
+			'http://b.hatena.ne.jp/entry/%s',
+			preg_replace_callback(
+				'#^(https?)://#u',
+				function ( $matches ) {
+					return 'https' === $matches[1] ? 's/' : '';
+				},
+				get_permalink( $post )
+			)
+		);
 		$title = __( 'Add this entry to hatena bookmark', 'hametupack' );
 		if ( $this->smart ) {
 			ob_start();
 			?>
-			<a href="<?= $url ?>" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter"
-			   data-hatena-bookmark-lang="ja" title="<?= esc_attr( $title ) ?>">
+			<a href="<?= $url; ?>" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter"
+				data-hatena-bookmark-lang="ja" title="<?= esc_attr( $title ); ?>">
 				<img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
-					 alt="<?= esc_attr( $title ) ?>"
-					 width="20" height="20" style="border: none;"/>
+					alt="<?= esc_attr( $title ); ?>"
+					width="20" height="20" style="border: none;"/>
 			</a>
 			<script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
 					async="async"></script>
@@ -67,7 +74,7 @@ class ShareHatebu extends AbstractShare {
 
 			return $link;
 		} else {
-			if ( 'icon-text' == $this->button_style ) {
+			if ( 'icon-text' === $this->button_style ) {
 				$label = _x( 'Bookmark', 'share_to', 'hametupack' );
 			} else {
 				$label = _x( 'Hatena Bookmark', 'share_to', 'hametupack' );
@@ -76,19 +83,19 @@ class ShareHatebu extends AbstractShare {
 			return $this->get_link( $url, $label, $title, '', 'sharing-hatebu-' . $post->ID );
 		}
 	}
-	
+
 	/**
 	 * Change share button
 	 *
 	 * @return array
 	 */
 	protected function amp_share_attributes() {
-		return [
+		return array(
 			'data-share-endpoint' => 'https://b.hatena.ne.jp/add',
 			'data-param-mode'     => 'confirm',
 			'data-param-url'      => get_permalink(),
 			'data-param-title'    => get_the_title(),
-		];
+		);
 	}
 }
 
