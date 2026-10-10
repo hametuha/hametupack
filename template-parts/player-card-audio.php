@@ -15,7 +15,7 @@ if ( has_post_thumbnail() ) {
 ?><!DOCTYPE html>
 <html>
 <head>
-	<meta charset="<?php get_bloginfo( 'charset' ); ?>" />
+	<meta charset="<?php echo esc_attr( get_bloginfo( 'charset' ) ); ?>" />
 	<title><?php the_title(); ?></title>
 	<style type="text/css">
 		body, html{

@@ -13,4 +13,7 @@ phpstan-baseline.neon
 phpstan-bootstrap.php
 phpunit.xml.dist
 tests
-vendor
+bin
+composer.json
+composer.lock
+src/scss

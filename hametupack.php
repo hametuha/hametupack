@@ -22,9 +22,7 @@ defined( 'ABSPATH' ) or die();
  */
 function hametupack_plugins_loaded() {
 	load_plugin_textdomain( 'hametupack', false, basename( __DIR__ ) . '/languages' );
-	if ( version_compare( phpversion(), '5.5.0', '<' ) ) {
-		add_action( 'admin_notices', 'hametupack_invalid_php' );
-	} elseif ( ! defined( 'JETPACK__VERSION' ) ) {
+	if ( ! defined( 'JETPACK__VERSION' ) ) {
 		add_action( 'admin_notices', 'hametupack_no_jetpack' );
 	} else {
 		require __DIR__ . '/vendor/autoload.php';
@@ -37,18 +35,6 @@ function hametupack_plugins_loaded() {
 	}
 }
 add_action( 'plugins_loaded', 'hametupack_plugins_loaded' );
-
-/**
- * Error message
- *
- * @package hametupack
- * @internal
- */
-function hametupack_invalid_php() {
-	// translators: %s PHP version.
-	$message = sprintf( __( 'Hametupack requires PHP5.5 and over, but yours %s.', 'hametupack' ), phpversion() );
-	printf( '<div class="error"><p>%s</p></div>', esc_html( $message ) );
-}
 
 /**
  * No Jetpack
