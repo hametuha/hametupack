@@ -11,7 +11,7 @@ list( $width, $height ) = $twitter->get_player_dimension( get_post(), $twitter->
 ?><!DOCTYPE html>
 <html>
 <head>
-	<meta charset="<?php get_bloginfo( 'charset' ); ?>" />
+	<meta charset="<?php echo esc_attr( get_bloginfo( 'charset' ) ); ?>" />
 	<title><?php the_title(); ?></title>
 
 	<style type="text/css">
