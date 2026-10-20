@@ -48,6 +48,10 @@ If you need more buttons, please read [our wiki](https://github.com/hametuha/ham
 
 Please make issue at [github](https://github.com/hametuha/hametupack/issues).
 
+### Where do I report security bugs found in this plugin?
+
+Please do not post it publicly. Report security bugs through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/report/wordpress/plugin/hametupack). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+
 ## Screenshots
 
 1. Share buttons looks like this on admin screen.
