@@ -1,19 +1,40 @@
-.claude
-.editorconfig
+# .distignore: 配布物（WordPress.org SVN / リリース zip）から除外するファイル。
+# rsync --exclude-from で使われるため、先頭 / はリポジトリルート固定。
+
+# VCS / CI / エディタ・OS
 .git
-.github
-.gitignore
-.node-version
-node_modules
-package.json
-package-lock.json
-phpcs.ruleset.xml
-phpstan.neon
-phpstan-baseline.neon
-phpstan-bootstrap.php
-phpunit.xml.dist
-tests
-bin
-composer.json
-composer.lock
-src/scss
+/.github
+/.gitignore
+/.distignore
+/.editorconfig
+.DS_Store
+
+# AI エージェント
+/.claude
+/CLAUDE.md
+
+# Node / ビルドツール（ビルド成果物は assets/）
+/node_modules
+/.node-version
+/package.json
+/package-lock.json
+# ビルド前ソース: scss は assets/css へコンパイル、fonts は assets/fonts へコピーされる
+# （assets/css/share-daddy-support.css は ../fonts/ を参照）。
+# src/img は includes/amp.php が plugin_dir_url() . 'src/img/' を直接参照しているため除外しない。
+/src/scss
+/src/fonts
+
+# PHP 開発ツール（composer.json は vendor/autoload.php 同梱のため残す）
+/composer.lock
+/phpcs.ruleset.xml
+/phpstan.neon
+/phpstan-baseline.neon
+/phpstan-bootstrap.php
+/phpunit.xml.dist
+
+# テスト・スクリプト
+/tests
+/bin
+
+# ドキュメント（readme.txt はデプロイ時に readme.md から生成される）
+/readme.md
