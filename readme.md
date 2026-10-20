@@ -3,7 +3,7 @@
 
 Contributors: Takahashi_Fumiki, hametuha  
 Tags: jetpack,japan,line,hatena  
-Requires at least: 4.7.0  
+Requires at least: 6.6  
 Tested up to: 7.1  
 Stable tag: 1.2.3  
 Requires PHP: 7.4  
