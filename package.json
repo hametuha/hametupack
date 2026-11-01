@@ -16,6 +16,6 @@
   "author": "fumikito <guy@hametuha.com>",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "sass": "^1.105.2"
+    "sass": "^1.106.1"
   }
 }
