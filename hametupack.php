@@ -8,7 +8,6 @@ Version: 1.2.3
 Requires at least: 6.6
 Requires PHP: 7.4
 Text Domain: hametupack
-Domain Path: /languages/
 Author URI: https://hametuha.co.jp
 */
 
@@ -22,7 +21,6 @@ defined( 'ABSPATH' ) or die();
  * @internal
  */
 function hametupack_plugins_loaded() {
-	load_plugin_textdomain( 'hametupack', false, basename( __DIR__ ) . '/languages' );
 	if ( ! defined( 'JETPACK__VERSION' ) ) {
 		add_action( 'admin_notices', 'hametupack_no_jetpack' );
 	} else {
